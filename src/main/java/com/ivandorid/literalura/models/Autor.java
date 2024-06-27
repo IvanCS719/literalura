@@ -37,10 +37,10 @@ public class Autor {
 
     @Override
     public String toString() {
-        return "********** Autor **********" +
+        return "---------- Autor ----------" +
                 "\nNombre: " + nombreAutor +
                 "\nAño de nacimiento: " + anio_nacimiento +
                 "\nAño de fallecimiento: " + anio_fallecimiento +
-                "\n***************************";
+                "\n---------------------------";
     }
 }
