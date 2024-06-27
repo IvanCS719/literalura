@@ -50,7 +50,7 @@ public class Libro {
 
     @Override
     public String toString() {
-        return "********** LIBRO **********" +
+        return "\n********** LIBRO **********" +
                 "\nTítulo: " + titulo +
                 "\nAutor: " + autor.getNombreAutor() +
                 "\nIdiomas: " + String.join(", ", idiomas) +
