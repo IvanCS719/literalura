@@ -1,8 +1,8 @@
 package com.ivandorid.literalura.main;
 
-import com.ivandorid.literalura.models.Autor;
-import com.ivandorid.literalura.models.DatosRespuestaGeneral;
-import com.ivandorid.literalura.models.Libro;
+import com.ivandorid.literalura.models.*;
+import com.ivandorid.literalura.repository.IAutorRepository;
+import com.ivandorid.literalura.repository.ILibroRepository;
 import com.ivandorid.literalura.service.ConsumoApi;
 import com.ivandorid.literalura.service.DeserializaDatos;
 
@@ -16,6 +16,14 @@ public class Main {
     private List<Autor> autoresRegistrados = new ArrayList<>();
 
     private final String URL_BASE = "https://gutendex.com/books/?search=";
+
+    private IAutorRepository autorRepositorio;
+    private ILibroRepository libroRepositorio;
+
+    public Main(IAutorRepository autorRepository, ILibroRepository libroRepository){
+        this.autorRepositorio = autorRepository;
+        this.libroRepositorio = libroRepository;
+    }
 
     public void ejecutarAplicacion() {
         //Mostrar el menú de opciones para interactuar con el usuario
@@ -109,15 +117,22 @@ public class Main {
 
         System.out.println(libro);
 
-        boolean libroFiltrado = librosRegistrados.stream()
-                .anyMatch(l -> l.getTitulo().toLowerCase().contains(libro.getTitulo().toLowerCase()));
+        Optional<Libro> libroEncontrado = libroRepositorio.findByTitulo(libro.getTitulo());
 
-        if (libroFiltrado) {
+        if (libroEncontrado.isPresent()) {
             System.out.println("\n*** Este libro ya esta regitrado ***");
             return;
         }
-        librosRegistrados.add(libro);
-        autoresRegistrados.add(libro.getAutor());
+
+        Optional<Autor> autorEncontrado = autorRepositorio.findByNombreAutor(libro.getAutor().getNombreAutor());
+
+        if (autorEncontrado.isPresent()){
+            libro.setAutor(autorEncontrado.get());
+        }else {
+            autorRepositorio.save(libro.getAutor());
+        }
+
+        libroRepositorio.save(libro);
         System.out.println("\n*** El libro se ha agregado a su registro ***");
 
     }
