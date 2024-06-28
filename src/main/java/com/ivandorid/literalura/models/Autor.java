@@ -5,10 +5,10 @@ public class Autor {
     private Integer anio_nacimiento;
     private Integer anio_fallecimiento;
 
-    public Autor(String nombreAutor, Integer anio_fallecimiento, Integer anio_nacimiento) {
+    public Autor(String nombreAutor, Integer anio_nacimiento, Integer anio_fallecimiento) {
         this.nombreAutor = nombreAutor;
-        this.anio_fallecimiento = anio_fallecimiento;
         this.anio_nacimiento = anio_nacimiento;
+        this.anio_fallecimiento = anio_fallecimiento;
     }
 
     public String getNombreAutor() {
