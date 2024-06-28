@@ -1,19 +1,38 @@
 package com.ivandorid.literalura.models;
 
-import java.util.List;
-import java.util.stream.Collectors;
+import jakarta.persistence.*;
 
+import java.util.List;
+
+@Entity
+@Table(name = "libros")
 public class Libro {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @Column(unique = true)
     private String titulo;
-    private Autor autor;
     private List<String> idiomas;
     private Integer numeroDescargas;
+    @ManyToOne
+    private Autor autor;
+
+    public Libro() {
+    }
 
     public Libro(String titulo, Autor autor, List<String> idiomas, Integer numeroDescargas) {
         this.titulo = titulo;
         this.autor = autor;
         this.idiomas = idiomas;
         this.numeroDescargas = numeroDescargas;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getTitulo(){

@@ -7,7 +7,6 @@ import com.ivandorid.literalura.service.ConsumoApi;
 import com.ivandorid.literalura.service.DeserializaDatos;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class Main {
     private ConsumoApi consumoApi = new ConsumoApi();
