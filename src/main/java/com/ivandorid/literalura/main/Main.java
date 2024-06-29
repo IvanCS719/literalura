@@ -36,7 +36,7 @@ public class Main {
                     1- Buscar el libro por el título en Internet para registrarlo
                     2- Listar libros registrados
                     3- Listar Autores registrados
-                    4- Listar autores en un determinado año
+                    4- Listar autores en vivos un determinado año
                     5- Listar libros por idioma
                     6- Ver top 10 libros más descargados
                     0- Salir
