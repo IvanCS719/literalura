@@ -108,8 +108,9 @@ public class Main {
 
     //Listar todos los libros registrados
     private void listarLibrosRegistrados() {
+        List<Libro> libroList = libroRepositorio.todosLosLibrosRegistrados();
         System.out.println("\nSus Libros Registrados:");
-        librosRegistrados.forEach(System.out::println);
+        libroList.forEach(System.out::println);
     }
 
     //Comprobar que al registrar un libro no este dublicado
@@ -140,7 +141,8 @@ public class Main {
     //Listar todos los autores registrados
     private void listarAutoresRegistrados() {
         System.out.println("\nAutores Registrados:");
-        autoresRegistrados.forEach(System.out::println);
+        List<Autor> autorList = autorRepositorio.findAll();
+        autorList.forEach(System.out::println);
     }
 
     //Listar todos los autores vivos en un determinado año
