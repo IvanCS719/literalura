@@ -14,4 +14,7 @@ public interface ILibroRepository extends JpaRepository<Libro, Long> {
     @Query("SELECT l FROM Libro l JOIN FETCH l.autor")
     List<Libro> todosLosLibrosRegistrados();
 
+    @Query(value = "SELECT * FROM libros WHERE ?1 = ANY(idiomas)", nativeQuery = true)
+    List<Libro> librosPorIdioma(String idioma);
+
 }

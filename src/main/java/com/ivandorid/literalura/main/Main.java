@@ -66,6 +66,7 @@ public class Main {
                     listarAutoresAnioDeterminado();
                     break;
                 case 5:
+                    listarLibrosPorIdioma();
                     break;
                 default:
                     System.err.println("Opción no válida");
@@ -166,5 +167,23 @@ public class Main {
                     "que los autores estuvieron vivos");
             teclado.nextLine();
         }
+    }
+
+    //Listar libros por idioma
+    public void listarLibrosPorIdioma(){
+        String mensaje = """
+                Ingrese el idioma para buscar los libros:
+                es -> Español
+                en -> Inglés
+                fr -> Francés
+                pt -> Portugués
+                """;
+        System.out.println(mensaje);
+        String idioma = teclado.nextLine();
+
+        List<Libro> libroList = libroRepositorio.librosPorIdioma(idioma);
+
+        libroList.forEach(System.out::println);
+
     }
 }
