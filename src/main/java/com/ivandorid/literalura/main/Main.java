@@ -153,12 +153,9 @@ public class Main {
 
             int anioVivo = teclado.nextInt();
 
-            List<Autor> autorList = autoresRegistrados.stream()
-                    .filter(a -> anioVivo >= a.getAnio_nacimiento()
-                            && anioVivo <= a.getAnio_fallecimiento())
-                    .toList();
-
             System.out.println("Autores vivos en el año " + anioVivo + ":");
+
+            List<Autor> autorList = autorRepositorio.encontrarAutorVivoPorAnio(anioVivo);
 
             autorList.forEach(System.out::println);
 
@@ -183,6 +180,7 @@ public class Main {
 
         List<Libro> libroList = libroRepositorio.librosPorIdioma(idioma);
 
+        System.out.println("Total de libros en el idioma seleccionado: " + libroList.size());
         libroList.forEach(System.out::println);
 
     }
