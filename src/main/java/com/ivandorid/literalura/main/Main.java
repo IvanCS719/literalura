@@ -38,6 +38,7 @@ public class Main {
                     3- Listar Autores registrados
                     4- Listar autores en un determinado año
                     5- Listar libros por idioma
+                    6- Ver top 10 libros más descargados
                     0- Salir
                     """;
             try {
@@ -67,6 +68,9 @@ public class Main {
                     break;
                 case 5:
                     listarLibrosPorIdioma();
+                    break;
+                case 6:
+                    listarTop10LibrosMasDescargados();
                     break;
                 default:
                     System.err.println("Opción no válida");
@@ -110,7 +114,7 @@ public class Main {
     //Listar todos los libros registrados
     private void listarLibrosRegistrados() {
         List<Libro> libroList = libroRepositorio.todosLosLibrosRegistrados();
-        System.out.println("\nSus Libros Registrados:");
+        System.out.println("\nLibros Registrados: " +libroList.size());
         libroList.forEach(System.out::println);
     }
 
@@ -182,6 +186,13 @@ public class Main {
 
         System.out.println("Total de libros en el idioma seleccionado: " + libroList.size());
         libroList.forEach(System.out::println);
+    }
 
+    //Listar el top 10 de los libros mas descargados
+    public void listarTop10LibrosMasDescargados(){
+        List<Libro> libroList = libroRepositorio.obtenerTop10LibrosMasDescargados();
+
+        System.out.println("Top 10 libros más descargados:");
+        libroList.forEach(System.out::println);
     }
 }
